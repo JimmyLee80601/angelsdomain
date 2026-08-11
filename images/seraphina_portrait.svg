@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="300" height="400">
+  <defs>
+    <!-- Dark background with purple warmth -->
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#15081a"/>
+      <stop offset="60%" stop-color="#0a0410"/>
+      <stop offset="100%" stop-color="#050208"/>
+    </radialGradient>
+    <!-- Warm purple glow -->
+    <radialGradient id="purpleGlow" cx="50%" cy="35%" r="40%">
+      <stop offset="0%" stop-color="#9370db" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#9370db" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Firelight from left -->
+    <radialGradient id="firelight" cx="20%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#c9a227" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#c9a227" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Eye glow — violet -->
+    <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#b088f9"/>
+      <stop offset="40%" stop-color="#9370db"/>
+      <stop offset="100%" stop-color="#6a4dbd" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Pale skin -->
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8d5c4"/>
+      <stop offset="50%" stop-color="#d8c0b0"/>
+      <stop offset="100%" stop-color="#b8a098"/>
+    </linearGradient>
+    <!-- Dark hair -->
+    <linearGradient id="hair" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a0a15"/>
+      <stop offset="50%" stop-color="#0d0510"/>
+      <stop offset="100%" stop-color="#08030a"/>
+    </linearGradient>
+    <!-- Purple fabric -->
+    <linearGradient id="fabric" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a1e50"/>
+      <stop offset="50%" stop-color="#3a1540"/>
+      <stop offset="100%" stop-color="#2a0e30"/>
+    </linearGradient>
+    <!-- Lavender fabric highlight -->
+    <linearGradient id="fabricHighlight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6a3570" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#4a1e50" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="300" height="400" fill="url(#bg)"/>
+  
+  <!-- Warm light from left (firelight) -->
+  <rect width="300" height="400" fill="url(#firelight)"/>
+  
+  <!-- Purple ambient glow -->
+  <ellipse cx="150" cy="150" rx="130" ry="180" fill="url(#purpleGlow)"/>
+  
+  <!-- BODY — Feminine figure -->
+  <!-- Shoulders and torso -->
+  <path d="M95,300 Q95,250 110,230 L125,218 Q140,210 150,208 Q160,210 175,218 L190,230 Q205,250 205,300 L205,400 L95,400 Z" 
+        fill="url(#fabric)"/>
+  
+  <!-- Fabric highlights — translucent purple -->
+  <path d="M110,235 Q115,225 125,220 Q135,215 145,213 L140,260 Q125,270 110,280 Z" 
+        fill="url(#fabricHighlight)"/>
+  <path d="M190,235 Q185,225 175,220 Q165,215 155,213 L160,260 Q175,270 190,280 Z" 
+        fill="url(#fabricHighlight)" opacity="0.4"/>
+  
+  <!-- Neckline — delicate V -->
+  <path d="M135,215 Q142,235 150,240 Q158,235 165,215" 
+        stroke="#6a3570" stroke-width="1" fill="none" opacity="0.5"/>
+  
+  <!-- NECK — Slender -->
+  <rect x="140" y="178" width="20" height="35" rx="5" fill="url(#skin)" opacity="0.9"/>
+  
+  <!-- HEAD — Youthful, soft features -->
+  <!-- Face shape — oval, softer jaw -->
+  <path d="M128,170 Q122,140 125,115 Q128,90 150,80 Q172,90 175,115 Q178,140 172,170 Q163,182 150,185 Q137,182 128,170 Z" 
+        fill="url(#skin)"/>
+  
+  <!-- Cheek warmth — subtle blush -->
+  <ellipse cx="133" cy="140" rx="10" ry="6" fill="#c97070" opacity="0.15"/>
+  <ellipse cx="167" cy="140" rx="10" ry="6" fill="#c97070" opacity="0.15"/>
+  
+  <!-- Jaw shadow — soft -->
+  <path d="M128,165 Q125,150 130,140 Q137,155 150,160 Q140,158 132,150 Z" 
+        fill="#b8a098" opacity="0.2"/>
+  <path d="M172,165 Q175,150 170,140 Q163,155 150,160 Q160,158 168,150 Z" 
+        fill="#b8a098" opacity="0.2"/>
+  
+  <!-- EYES — Large, violet, expressive -->
+  <!-- Left eye -->
+  <ellipse cx="140" cy="125" rx="10" ry="6" fill="#1a0820" opacity="0.5"/>
+  <ellipse cx="140" cy="125" rx="7" ry="5" fill="#2a1035"/>
+  <ellipse cx="140" cy="125" rx="4.5" ry="4" fill="url(#eyeGlow)" filter="url(#glow)"/>
+  <circle cx="140" cy="125" r="2.2" fill="#b088f9"/>
+  <circle cx="138.5" cy="123.5" r="0.8" fill="#d4c0f0" opacity="0.9"/>
+  
+  <!-- Right eye -->
+  <ellipse cx="160" cy="125" rx="10" ry="6" fill="#1a0820" opacity="0.5"/>
+  <ellipse cx="160" cy="125" rx="7" ry="5" fill="#2a1035"/>
+  <ellipse cx="160" cy="125" rx="4.5" ry="4" fill="url(#eyeGlow)" filter="url(#glow)"/>
+  <circle cx="160" cy="125" r="2.2" fill="#b088f9"/>
+  <circle cx="158.5" cy="123.5" r="0.8" fill="#d4c0f0" opacity="0.9"/>
+  
+  <!-- Eyebrows — delicate, expressive -->
+  <path d="M130,118 Q135,114 145,117" stroke="#2a1020" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <path d="M170,118 Q165,114 155,117" stroke="#2a1020" stroke-width="1.2" fill="none" opacity="0.5"/>
+  
+  <!-- Eyelashes -->
+  <path d="M132,123 Q130,120 128,118" stroke="#1a0815" stroke-width="0.8" fill="none" opacity="0.5"/>
+  <path d="M168,123 Q170,120 172,118" stroke="#1a0815" stroke-width="0.8" fill="none" opacity="0.5"/>
+  
+  <!-- Nose — small, delicate -->
+  <path d="M150,122 L149,134 Q147,138 150,139 Q153,138 151,134 Z" 
+        fill="#c8b0a0" opacity="0.4"/>
+  
+  <!-- Mouth — full, slightly parted -->
+  <path d="M142,150 Q146,147 150,148 Q154,147 158,150" 
+        stroke="#8a4050" stroke-width="1.8" fill="none"/>
+  <path d="M143,151 Q150,156 157,151" 
+        stroke="#6a3040" stroke-width="1" fill="none" opacity="0.6"/>
+  <!-- Lip highlight -->
+  <ellipse cx="150" cy="149" rx="4" ry="1.5" fill="#c08080" opacity="0.2"/>
+  
+  <!-- HAIR — Long, dark, flowing -->
+  <!-- Main hair mass -->
+  <path d="M120,120 Q115,85 118,60 Q125,38 150,30 Q175,38 182,60 Q185,85 180,120 Q178,105 170,98 Q160,92 150,93 Q140,92 130,98 Q122,105 120,120 Z" 
+        fill="url(#hair)"/>
+  
+  <!-- Hair flowing down left side -->
+  <path d="M118,120 Q115,140 112,170 Q108,200 105,240 Q102,270 100,300 Q98,320 100,340" 
+        stroke="#0d0510" stroke-width="15" fill="none" opacity="0.8" stroke-linecap="round"/>
+  <path d="M122,125 Q118,150 115,180 Q112,210 108,250 Q105,280 104,310" 
+        stroke="#120818" stroke-width="8" fill="none" opacity="0.5" stroke-linecap="round"/>
+  
+  <!-- Hair flowing down right side -->
+  <path d="M182,120 Q185,140 188,170 Q192,200 195,240 Q198,270 200,300 Q202,320 200,340" 
+        stroke="#0d0510" stroke-width="15" fill="none" opacity="0.8" stroke-linecap="round"/>
+  <path d="M178,125 Q182,150 185,180 Q188,210 192,250 Q195,280 196,310" 
+        stroke="#120818" stroke-width="8" fill="none" opacity="0.5" stroke-linecap="round"/>
+  
+  <!-- Hair highlights — subtle -->
+  <path d="M130,80 Q138,65 150,58" stroke="#2a1525" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M170,80 Q162,65 150,58" stroke="#2a1525" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M125,100 Q130,85 140,75" stroke="#1a0a18" stroke-width="0.8" fill="none" opacity="0.3"/>
+  
+  <!-- Wisps of hair across face -->
+  <path d="M130,100 Q128,115 125,135" stroke="#0d0510" stroke-width="0.8" fill="none" opacity="0.3"/>
+  <path d="M170,100 Q172,115 175,135" stroke="#0d0510" stroke-width="0.8" fill="none" opacity="0.3"/>
+  
+  <!-- Purple rim light — left side -->
+  <path d="M128,85 Q122,110 120,140 Q118,170 115,200" 
+        stroke="#9370db" stroke-width="1.5" fill="none" opacity="0.25" filter="url(#glow)"/>
+  
+  <!-- Firelight warm edge — right side -->
+  <path d="M172,85 Q178,110 180,140 Q182,170 185,200" 
+        stroke="#c9a227" stroke-width="1" fill="none" opacity="0.15" filter="url(#glow)"/>
+  
+  <!-- Violet reflection in eyes — extended glow -->
+  <ellipse cx="150" cy="125" rx="25" ry="8" fill="#9370db" opacity="0.06" filter="url(#softGlow)"/>
+  
+  <!-- Title text -->
+  <text x="150" y="380" text-anchor="middle" font-family="Georgia, serif" font-size="14" 
+        letter-spacing="6" fill="#9370db" opacity="0.7">THE CAPTIVE</text>
+</svg>

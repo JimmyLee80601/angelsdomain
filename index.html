@@ -1140,9 +1140,12 @@
             utterance.rate = 0.92;
             utterance.volume = masterVolume;
         } else {
-            utterance.pitch = 0.9;
-            utterance.rate = 0.85;
-            utterance.volume = masterVolume * 0.8;
+            // Narrator — female voice (Zira), warm and atmospheric
+            const narratorVoice = voices.find(v => v.name.includes('Zira') || v.name.includes('Jenny') || v.name.includes('Catherine') || v.name.includes('Hazel') || v.name.includes('Female') || v.gender === 'female') || voices[0];
+            utterance.voice = narratorVoice;
+            utterance.pitch = 0.95;
+            utterance.rate = 0.88;
+            utterance.volume = masterVolume * 0.85;
         }
         window.speechSynthesis.speak(utterance);
     }

@@ -1120,34 +1120,57 @@
         }
     }
 
-    // ---- TTS VOICE SYSTEM ----
+    // ---- TTS VOICE SYSTEM (Piper neural voices) ----
+    const TTS_SERVER = 'http://localhost:5050';
+    let ttsAvailable = false;
+
+    // Check if Piper server is running
+    fetch(TTS_SERVER + '/health').then(r => r.json()).then(d => {
+        if (d.status === 'ok') { ttsAvailable = true; console.log('Piper TTS ready:', d.voices); }
+    }).catch(() => { console.log('Piper TTS not available, voices disabled'); });
+
     function speakLine(text, speaker) {
-        if (!voiceActive || !window.speechSynthesis) return;
+        if (!voiceActive) return;
         if (text.includes('[INSERT') || text.includes('[TO BE CONTINUED')) return;
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        const voices = window.speechSynthesis.getVoices();
+        if (!ttsAvailable) return;
+
+        // Map speaker to Piper voice
+        let voice = 'female';
+        let speed = 1.0;
         if (speaker === 'angel') {
-            const maleVoice = voices.find(v => v.name.includes('David') || v.name.includes('James') || v.name.includes('Mark') || v.name.includes('George') || v.name.includes('Male') || v.gender === 'male') || voices[0];
-            utterance.voice = maleVoice;
-            utterance.pitch = 0.55;
-            utterance.rate = 0.72;
-            utterance.volume = masterVolume;
+            voice = 'male';
+            speed = 0.85;  // Slower, more deliberate
         } else if (speaker === 'protagonist') {
-            const femaleVoice = voices.find(v => v.name.includes('Zira') || v.name.includes('Jenny') || v.name.includes('Catherine') || v.name.includes('Hazel') || v.name.includes('Female') || v.gender === 'female') || voices[0];
-            utterance.voice = femaleVoice;
-            utterance.pitch = 1.12;
-            utterance.rate = 0.92;
-            utterance.volume = masterVolume;
+            voice = 'female';
+            speed = 0.95;  // Slightly nervous
         } else {
-            // Narrator — female voice (Zira), warm and atmospheric
-            const narratorVoice = voices.find(v => v.name.includes('Zira') || v.name.includes('Jenny') || v.name.includes('Catherine') || v.name.includes('Hazel') || v.name.includes('Female') || v.gender === 'female') || voices[0];
-            utterance.voice = narratorVoice;
-            utterance.pitch = 0.95;
-            utterance.rate = 0.88;
-            utterance.volume = masterVolume * 0.85;
+            // Narrator
+            voice = 'female';
+            speed = 0.9;   // Atmospheric
         }
-        window.speechSynthesis.speak(utterance);
+
+        // Request TTS from Piper server
+        fetch(TTS_SERVER + '/tts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: text, voice: voice, speed: speed })
+        })
+        .then(response => response.arrayBuffer())
+        .then(buffer => {
+            // Play the WAV audio
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            audioCtx.decodeAudioData(buffer, (decodedBuffer) => {
+                const source = audioCtx.createBufferSource();
+                source.buffer = decodedBuffer;
+                const gainNode = audioCtx.createGain();
+                gainNode.gain.value = masterVolume;
+                source.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                source.start(0);
+                source.onended = () => { audioCtx.close(); };
+            });
+        })
+        .catch(err => console.log('TTS error:', err));
     }
 
     // ============================================================

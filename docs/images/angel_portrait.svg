@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="300" height="400">
+  <defs>
+    <!-- Dark background gradient -->
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1a0508"/>
+      <stop offset="60%" stop-color="#0d0204"/>
+      <stop offset="100%" stop-color="#050102"/>
+    </radialGradient>
+    <!-- Red ambient glow -->
+    <radialGradient id="redGlow" cx="50%" cy="35%" r="40%">
+      <stop offset="0%" stop-color="#8b0000" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#8b0000" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Eye glow -->
+    <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff1a1a"/>
+      <stop offset="40%" stop-color="#cc0000"/>
+      <stop offset="100%" stop-color="#8b0000" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Pale skin gradient -->
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c4a8a0"/>
+      <stop offset="50%" stop-color="#b89890"/>
+      <stop offset="100%" stop-color="#8a7068"/>
+    </linearGradient>
+    <!-- Dark hair gradient -->
+    <linearGradient id="hair" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1015"/>
+      <stop offset="50%" stop-color="#0d0810"/>
+      <stop offset="100%" stop-color="#050308"/>
+    </linearGradient>
+    <!-- Clothing gradient -->
+    <linearGradient id="coat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0a10"/>
+      <stop offset="50%" stop-color="#0d0508"/>
+      <stop offset="100%" stop-color="#050204"/>
+    </linearGradient>
+    <!-- Red rim light -->
+    <linearGradient id="rimLight" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0%" stop-color="#8b0000" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#8b0000" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Filter for soft glow -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="300" height="400" fill="url(#bg)"/>
+  
+  <!-- Gothic arch frame -->
+  <path d="M60,400 L60,120 Q60,40 150,20 Q240,40 240,120 L240,400" 
+        fill="none" stroke="#2a1015" stroke-width="3" opacity="0.5"/>
+  <path d="M65,400 L65,122 Q65,44 150,24 Q235,44 235,122 L235,400" 
+        fill="none" stroke="#3a1520" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Red ambient glow behind figure -->
+  <ellipse cx="150" cy="160" rx="120" ry="180" fill="url(#redGlow)"/>
+  
+  <!-- BODY — Tall dark figure -->
+  <!-- Shoulders and torso -->
+  <path d="M90,280 Q90,230 105,210 L120,195 Q140,185 150,183 Q160,185 180,195 L195,210 Q210,230 210,280 L210,400 L90,400 Z" 
+        fill="url(#coat)"/>
+  
+  <!-- High collar — left -->
+  <path d="M108,210 L100,175 Q100,160 110,155 L125,165 Q120,180 118,195 Z" 
+        fill="#1a0a10" stroke="#2a1018" stroke-width="0.5"/>
+  <!-- High collar — right -->
+  <path d="M192,210 L200,175 Q200,160 190,155 L175,165 Q180,180 182,195 Z" 
+        fill="#1a0a10" stroke="#2a1018" stroke-width="0.5"/>
+  
+  <!-- Collar inner lining — deep red -->
+  <path d="M110,205 L105,170 Q108,158 120,158 L125,168 Q118,178 115,195 Z" 
+        fill="#3a0808" opacity="0.7"/>
+  <path d="M190,205 L195,170 Q192,158 180,158 L175,168 Q182,178 185,195 Z" 
+        fill="#3a0808" opacity="0.7"/>
+  
+  <!-- Coat details — lapels -->
+  <path d="M120,210 L135,195 L150,190 L150,280 L120,280 Z" 
+        fill="#150810" opacity="0.8"/>
+  <path d="M180,210 L165,195 L150,190 L150,280 L180,280 Z" 
+        fill="#150810" opacity="0.8"/>
+  
+  <!-- NECK -->
+  <rect x="137" y="165" width="26" height="25" rx="5" fill="url(#skin)" opacity="0.85"/>
+  
+  <!-- HEAD — Angular, pale -->
+  <!-- Face shape — angular jaw, sharp cheekbones -->
+  <path d="M125,160 Q120,130 122,110 Q125,85 150,75 Q175,85 178,110 Q180,130 175,160 Q165,170 150,172 Q135,170 125,160 Z" 
+        fill="url(#skin)"/>
+  
+  <!-- Jawline shadow — more angular -->
+  <path d="M125,155 Q122,140 125,125 L130,145 Q135,158 150,162 Q140,158 130,148 Z" 
+        fill="#8a7068" opacity="0.3"/>
+  <path d="M175,155 Q178,140 175,125 L170,145 Q165,158 150,162 Q160,158 170,148 Z" 
+        fill="#8a7068" opacity="0.3"/>
+  
+  <!-- Cheekbone highlights -->
+  <ellipse cx="132" cy="125" rx="8" ry="4" fill="#c4a8a0" opacity="0.3"/>
+  <ellipse cx="168" cy="125" rx="8" ry="4" fill="#c4a8a0" opacity="0.3"/>
+  
+  <!-- EYES — Glowing crimson, the focal point -->
+  <!-- Left eye socket shadow -->
+  <ellipse cx="138" cy="115" rx="12" ry="7" fill="#2a0810" opacity="0.6"/>
+  <!-- Left eye -->
+  <ellipse cx="138" cy="115" rx="8" ry="5" fill="#1a0005"/>
+  <ellipse cx="138" cy="115" rx="5" ry="4" fill="url(#eyeGlow)" filter="url(#glow)"/>
+  <circle cx="138" cy="115" r="2" fill="#ff2222"/>
+  <circle cx="136" cy="113" r="0.8" fill="#ffaaaa" opacity="0.8"/>
+  
+  <!-- Right eye socket shadow -->
+  <ellipse cx="162" cy="115" rx="12" ry="7" fill="#2a0810" opacity="0.6"/>
+  <!-- Right eye -->
+  <ellipse cx="162" cy="115" rx="8" ry="5" fill="#1a0005"/>
+  <ellipse cx="162" cy="115" rx="5" ry="4" fill="url(#eyeGlow)" filter="url(#glow)"/>
+  <circle cx="162" cy="115" r="2" fill="#ff2222"/>
+  <circle cx="160" cy="113" r="0.8" fill="#ffaaaa" opacity="0.8"/>
+  
+  <!-- Brow ridge — heavy, angular -->
+  <path d="M126,108 Q132,104 142,107" stroke="#2a1520" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M174,108 Q168,104 158,107" stroke="#2a1520" stroke-width="2" fill="none" opacity="0.6"/>
+  
+  <!-- Nose — straight, aristocratic -->
+  <path d="M150,110 L148,125 L145,132 Q150,134 155,132 L152,125 Z" 
+        fill="#a89088" opacity="0.5"/>
+  
+  <!-- Mouth — thin, pale, slight cruel curve -->
+  <path d="M140,142 Q145,140 150,141 Q155,140 160,142" 
+        stroke="#6a3030" stroke-width="1.5" fill="none"/>
+  <path d="M142,143 Q150,146 158,143" 
+        stroke="#4a2020" stroke-width="0.8" fill="none" opacity="0.5"/>
+  
+  <!-- HAIR — Dark, swept back -->
+  <path d="M120,115 Q115,85 120,65 Q130,45 150,38 Q170,45 180,65 Q185,85 180,115 Q175,100 165,95 Q155,92 150,93 Q145,92 135,95 Q125,100 120,115 Z" 
+        fill="url(#hair)"/>
+  <!-- Hair strands -->
+  <path d="M118,100 Q115,80 120,60" stroke="#1a0a12" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M182,100 Q185,80 180,60" stroke="#1a0a12" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M130,90 Q140,70 150,60" stroke="#0d0508" stroke-width="0.8" fill="none" opacity="0.4"/>
+  <path d="M170,90 Q160,70 150,60" stroke="#0d0508" stroke-width="0.8" fill="none" opacity="0.4"/>
+  
+  <!-- Sideburns / pointed tips -->
+  <path d="M118,115 Q115,125 112,140" stroke="#0d0810" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M182,115 Q185,125 188,140" stroke="#0d0810" stroke-width="2" fill="none" opacity="0.6"/>
+  
+  <!-- Red rim light — right side -->
+  <path d="M175,80 Q180,100 182,130 Q185,160 192,195 Q200,230 210,280" 
+        stroke="#8b0000" stroke-width="1.5" fill="none" opacity="0.4" filter="url(#glow)"/>
+  
+  <!-- Red rim light — left shoulder -->
+  <path d="M90,280 Q90,250 95,230" 
+        stroke="#8b0000" stroke-width="1" fill="none" opacity="0.3" filter="url(#glow)"/>
+  
+  <!-- Subtle red reflection in eyes — extended glow -->
+  <ellipse cx="150" cy="115" rx="30" ry="8" fill="#8b0000" opacity="0.08" filter="url(#softGlow)"/>
+  
+  <!-- Title text at bottom -->
+  <text x="150" y="380" text-anchor="middle" font-family="Georgia, serif" font-size="14" 
+        letter-spacing="6" fill="#8b0000" opacity="0.7">LORD OF THE DOMAIN</text>
+</svg>

@@ -1,0 +1,25 @@
+{
+  "name": "Angel's Domain — A Dark Gothic Fantasy",
+  "short_name": "Angel's Domain",
+  "description": "An interactive dark gothic fantasy visual novel by Jimmy Lee & Jeannine",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0a0a",
+  "theme_color": "#8b0000",
+  "categories": ["entertainment", "books"],
+  "icons": [
+    {
+      "src": "images/angel_portrait.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "images/seraphina_portrait.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

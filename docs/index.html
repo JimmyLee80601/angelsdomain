@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Angel's Domain — A Dark Gothic Fantasy</title>
+    <meta name="description" content="An interactive dark gothic fantasy by Jimmy Lee & Jeannine">
+    <meta name="theme-color" content="#8b0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Angel's Domain">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="images/angel_portrait.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --blood-red: #8b0000;
+            --deep-purple: #4a0e4e;
+            --gothic-gold: #c9a227;
+            --parchment: #e8d5c4;
+            --shadow-black: #0a0a0a;
+        }
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            background: var(--shadow-black);
+            color: var(--parchment);
+            overflow: hidden;
+            height: 100vh;
+            height: 100dvh;
+            width: 100vw;
+            touch-action: manipulation;
+        }
+        #stage {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        /* ============ BACKGROUNDS ============ */
+        #background-layer {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            transition: opacity 1.5s ease-in-out;
+        }
+        #background-layer img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7) contrast(1.1);
+            transition: opacity 1s ease;
+        }
+        #background-layer::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.1) 40%, rgba(10,10,10,0.7) 70%, rgba(10,10,10,0.95) 100%);
+            pointer-events: none;
+        }
+        .torch-flicker { animation: flicker 4s infinite alternate; }
+        @keyframes flicker {
+            0%,100% { filter: brightness(0.7) contrast(1.1); }
+            10% { filter: brightness(0.75) contrast(1.15); }
+            20% { filter: brightness(0.68) contrast(1.08); }
+            30% { filter: brightness(0.72) contrast(1.12); }
+            40% { filter: brightness(0.69) contrast(1.09); }
+            50% { filter: brightness(0.74) contrast(1.14); }
+            60% { filter: brightness(0.71) contrast(1.11); }
+            70% { filter: brightness(0.76) contrast(1.16); }
+            80% { filter: brightness(0.7) contrast(1.1); }
+            90% { filter: brightness(0.73) contrast(1.13); }
+        }
+
+        /* ============ MIST ============ */
+        #mist-layer {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .mist-particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(200,180,220,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: drift 20s infinite linear;
+        }
+        @keyframes drift {
+            0% { transform: translateX(-10%) translateY(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateX(110%) translateY(-50px); opacity: 0; }
+        }
+
+        /* ============ CHAPTER HEADER ============ */
+        #chapter-header {
+            position: absolute;
+            top: 30px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+        #chapter-header.visible { opacity: 1; }
+        #chapter-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 14px; font-weight: 400;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--gothic-gold);
+            text-shadow: 0 0 20px rgba(201,162,39,0.4);
+        }
+        #chapter-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 28px; font-weight: 700;
+            letter-spacing: 4px;
+            margin-top: 8px;
+            color: var(--parchment);
+            text-shadow: 0 0 30px rgba(232,213,196,0.3);
+        }
+
+        /* ============ SCENE TITLE ============ */
+        #scene-title {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 2s ease;
+            pointer-events: none;
+        }
+        #scene-title.visible { opacity: 1; }
+        #scene-title h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 48px; font-weight: 700;
+            letter-spacing: 6px;
+            color: var(--parchment);
+            text-shadow: 0 0 10px rgba(139,0,0,0.5), 0 0 40px rgba(139,0,0,0.3), 0 0 80px rgba(139,0,0,0.1);
+            animation: titlePulse 3s ease-in-out infinite;
+        }
+        @keyframes titlePulse {
+            0%,100% { text-shadow: 0 0 10px rgba(139,0,0,0.5), 0 0 40px rgba(139,0,0,0.3), 0 0 80px rgba(139,0,0,0.1); }
+            50% { text-shadow: 0 0 15px rgba(139,0,0,0.7), 0 0 60px rgba(139,0,0,0.4), 0 0 120px rgba(139,0,0,0.2); }
+        }
+
+        /* ============ CHARACTER PORTRAITS ============ */
+        #portrait-layer {
+            position: absolute;
+            bottom: 200px;
+            left: 0; right: 0;
+            z-index: 15;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 5%;
+            pointer-events: none;
+            height: 300px;
+        }
+        .portrait-container {
+            width: 180px;
+            height: 260px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            filter: drop-shadow(0 0 20px rgba(0,0,0,0.8));
+        }
+        .portrait-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .portrait-container.left { margin-right: auto; }
+        .portrait-container.right { margin-left: auto; }
+        .portrait-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .portrait-container.angel img {
+            filter: drop-shadow(0 0 15px rgba(139,0,0,0.4));
+        }
+        .portrait-container.protagonist img {
+            filter: drop-shadow(0 0 15px rgba(147,112,219,0.4));
+        }
+        /* Portrait glow ring */
+        .portrait-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 10%; right: 10%;
+            height: 3px;
+            border-radius: 2px;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        .portrait-container.visible::after { opacity: 1; }
+        .portrait-container.angel::after {
+            background: linear-gradient(90deg, transparent, var(--blood-red), transparent);
+            box-shadow: 0 0 10px var(--blood-red);
+        }
+        .portrait-container.protagonist::after {
+            background: linear-gradient(90deg, transparent, var(--deep-purple), transparent);
+            box-shadow: 0 0 10px var(--deep-purple);
+        }
+
+        /* ============ DIALOGUE BOX ============ */
+        #dialogue-box {
+            position: relative;
+            z-index: 20;
+            width: 90%;
+            max-width: 900px;
+            margin-bottom: 30px;
+            padding: 25px 35px;
+            background: linear-gradient(to bottom, rgba(20,15,25,0.92) 0%, rgba(10,8,15,0.95) 100%);
+            border: 1px solid rgba(139,0,0,0.3);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(139,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        #dialogue-box:hover {
+            box-shadow: 0 0 40px rgba(139,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+        }
+        #speaker-name {
+            font-family: 'Cinzel', serif;
+            font-size: 13px; font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+        #speaker-name.angel { color: var(--blood-red); text-shadow: 0 0 10px rgba(139,0,0,0.5); }
+        #speaker-name.protagonist { color: #9370db; text-shadow: 0 0 10px rgba(147,112,219,0.5); }
+        #speaker-name.narrator { color: var(--gothic-gold); opacity: 0.6; }
+        #dialogue-text {
+            font-size: 20px;
+            line-height: 1.7;
+            color: var(--parchment);
+            text-shadow: 0 0 10px rgba(232,213,196,0.1);
+            min-height: 60px;
+        }
+        #dialogue-text.typing::after {
+            content: '|';
+            animation: blink 1s infinite;
+            color: var(--blood-red);
+        }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* ============ INSERT MARKERS ============ */
+        .insert-marker {
+            background: linear-gradient(90deg, rgba(139,0,0,0.2), rgba(74,14,78,0.2));
+            border: 1px dashed var(--blood-red);
+            border-radius: 4px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #ff6b6b;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .insert-marker:hover {
+            background: linear-gradient(90deg, rgba(139,0,0,0.3), rgba(74,14,78,0.3));
+            border-color: #ff6b6b;
+            box-shadow: 0 0 15px rgba(139,0,0,0.2);
+        }
+        .insert-note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 8px;
+            font-style: normal;
+        }
+
+        /* ============ NAV BAR ============ */
+        #nav-bar {
+            position: relative;
+            z-index: 20;
+            width: 90%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+        .nav-btn {
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 10px 24px;
+            background: rgba(139,0,0,0.2);
+            border: 1px solid rgba(139,0,0,0.4);
+            color: var(--parchment);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        .nav-btn:hover:not(:disabled) {
+            background: rgba(139,0,0,0.4);
+            border-color: var(--blood-red);
+            box-shadow: 0 0 20px rgba(139,0,0,0.3);
+            transform: translateY(-2px);
+        }
+        .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        #progress-bar {
+            flex: 1;
+            height: 2px;
+            background: rgba(139,0,0,0.2);
+            margin: 0 20px;
+            position: relative;
+            border-radius: 1px;
+        }
+        #progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blood-red), var(--deep-purple));
+            border-radius: 1px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(139,0,0,0.5);
+        }
+        #scene-counter {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--gothic-gold);
+            opacity: 0.7;
+        }
+
+        /* ============ AUDIO CONTROLS ============ */
+        #audio-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 30;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .audio-btn {
+            background: rgba(139,0,0,0.2);
+            border: 1px solid rgba(139,0,0,0.4);
+            color: var(--parchment);
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .audio-btn:hover {
+            background: rgba(139,0,0,0.4);
+            border-color: var(--blood-red);
+        }
+        .audio-btn.active {
+            background: rgba(139,0,0,0.5);
+            box-shadow: 0 0 15px rgba(139,0,0,0.3);
+        }
+        #volume-slider {
+            width: 80px;
+            accent-color: var(--blood-red);
+        }
+
+        /* ============ START SCREEN ============ */
+        #start-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 100;
+            background: radial-gradient(ellipse at center, rgba(20,10,15,0.95) 0%, rgba(5,2,5,0.98) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: opacity 2s ease;
+        }
+        #start-screen.hidden { opacity: 0; pointer-events: none; }
+        #start-screen h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 8px;
+            color: var(--parchment);
+            text-shadow: 0 0 20px rgba(139,0,0,0.5), 0 0 60px rgba(139,0,0,0.3);
+            margin-bottom: 10px;
+        }
+        #start-screen h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 6px;
+            color: var(--gothic-gold);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        #start-screen .authors {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            font-style: italic;
+            color: rgba(232,213,196,0.5);
+            margin-bottom: 60px;
+        }
+        #start-screen .start-btn {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            padding: 16px 48px;
+            background: transparent;
+            border: 1px solid var(--blood-red);
+            color: var(--parchment);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        #start-screen .start-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139,0,0,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        #start-screen .start-btn:hover::before { left: 100%; }
+        #start-screen .start-btn:hover {
+            background: rgba(139,0,0,0.2);
+            box-shadow: 0 0 30px rgba(139,0,0,0.3);
+            transform: translateY(-2px);
+        }
+        #start-screen .continue-note {
+            font-size: 12px;
+            color: rgba(232,213,196,0.3);
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* ============ MENU OVERLAY ============ */
+        #menu-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 50;
+            background: rgba(5,2,5,0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        #menu-overlay.visible { opacity: 1; pointer-events: all; }
+        #menu-overlay h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            letter-spacing: 6px;
+            color: var(--gothic-gold);
+            margin-bottom: 30px;
+        }
+        #save-slots {
+            width: 80%;
+            max-width: 400px;
+        }
+        .save-slot {
+            padding: 15px 20px;
+            background: rgba(139,0,0,0.1);
+            border: 1px solid rgba(139,0,0,0.3);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .save-slot:hover {
+            background: rgba(139,0,0,0.2);
+            border-color: var(--blood-red);
+        }
+        .slot-name {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: var(--parchment);
+        }
+        .slot-date {
+            font-size: 12px;
+            color: rgba(232,213,196,0.5);
+        }
+        .menu-close {
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            padding: 10px 30px;
+            background: transparent;
+            border: 1px solid rgba(139,0,0,0.4);
+            color: var(--parchment);
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .menu-close:hover {
+            background: rgba(139,0,0,0.2);
+            border-color: var(--blood-red);
+        }
+
+        /* ============ INSTALL BANNER ============ */
+        #install-banner {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 200;
+            background: linear-gradient(to right, rgba(20,10,15,0.95), rgba(10,5,15,0.95));
+            border-top: 1px solid rgba(139,0,0,0.4);
+            padding: 12px 20px;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        #install-banner.visible { display: flex; }
+        #install-banner .install-text {
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--parchment);
+        }
+        #install-banner .install-btn {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            background: rgba(139,0,0,0.3);
+            border: 1px solid var(--blood-red);
+            color: var(--parchment);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        #install-banner .install-btn:hover {
+            background: rgba(139,0,0,0.5);
+        }
+        #install-banner .install-dismiss {
+            background: none;
+            border: none;
+            color: rgba(232,213,196,0.4);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 0 8px;
+        }
+
+        /* ============ EFFECTS ============ */
+        .shake { animation: shake 0.5s ease; }
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            10% { transform: translateX(-5px); }
+            20% { transform: translateX(5px); }
+            30% { transform: translateX(-4px); }
+            40% { transform: translateX(4px); }
+            50% { transform: translateX(-3px); }
+            60% { transform: translateX(3px); }
+            70% { transform: translateX(-2px); }
+            80% { transform: translateX(2px); }
+            90% { transform: translateX(-1px); }
+        }
+        .heartbeat { animation: heartbeat 1.5s ease infinite; }
+        @keyframes heartbeat {
+            0%,100% { transform: scale(1); }
+            14% { transform: scale(1.02); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.02); }
+            70% { transform: scale(1); }
+        }
+        .slam { animation: slam 0.6s ease; }
+        @keyframes slam {
+            0% { transform: scale(1); }
+            20% { transform: scale(0.97); }
+            40% { transform: scale(1.02); }
+            60% { transform: scale(0.99); }
+            80% { transform: scale(1.01); }
+            100% { transform: scale(1); }
+        }
+        .reveal {
+            animation: revealBlur 2s ease;
+        }
+        @keyframes revealBlur {
+            0% { filter: blur(10px) brightness(1.5); }
+            50% { filter: blur(3px) brightness(1.2); }
+            100% { filter: blur(0) brightness(1); }
+        }
+        .fire_flare { animation: fireFlare 1.5s ease; }
+        @keyframes fireFlare {
+            0% { filter: brightness(0.7) contrast(1.1); }
+            30% { filter: brightness(1.8) contrast(1.3) saturate(1.5); }
+            100% { filter: brightness(0.7) contrast(1.1); }
+        }
+        .mirror_glow { animation: mirrorGlow 2s ease; }
+        @keyframes mirrorGlow {
+            0% { filter: hue-rotate(0deg) brightness(0.7); }
+            50% { filter: hue-rotate(30deg) brightness(1.2); }
+            100% { filter: hue-rotate(0deg) brightness(0.7); }
+        }
+        .rage { animation: rage 1.5s ease; }
+        @keyframes rage {
+            0% { filter: brightness(0.7) contrast(1.1) saturate(1); }
+            30% { filter: brightness(1.4) contrast(1.5) saturate(2); }
+            100% { filter: brightness(0.7) contrast(1.1) saturate(1); }
+        }
+        .stammer { animation: stammer 0.1s ease infinite; }
+        @keyframes stammer {
+            0%,100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(1px) translateY(-1px); }
+            50% { transform: translateX(-1px) translateY(1px); }
+            75% { transform: translateX(1px) translateY(0); }
+        }
+        .bite { animation: bite 0.8s ease; }
+        @keyframes bite {
+            0% { filter: brightness(0.7); }
+            20% { filter: brightness(0.3) saturate(0.5); }
+            40% { filter: brightness(1.5) saturate(2) hue-rotate(-10deg); }
+            100% { filter: brightness(0.7) contrast(1.1); }
+        }
+
+        /* ============ LOADING ============ */
+        #loading-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 300;
+            background: #050208;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease;
+        }
+        #loading-screen.hidden { opacity: 0; pointer-events: none; }
+        #loading-screen .loading-text {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gothic-gold);
+            opacity: 0.7;
+        }
+        #loading-screen .loading-bar {
+            width: 200px;
+            height: 2px;
+            background: rgba(139,0,0,0.2);
+            margin-top: 20px;
+            border-radius: 1px;
+            overflow: hidden;
+        }
+        #loading-screen .loading-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--blood-red), var(--deep-purple));
+            transition: width 0.3s ease;
+        }
+
+        /* ============ MOBILE ============ */
+        @media (max-width: 768px) {
+            #start-screen h1 { font-size: 28px; letter-spacing: 4px; }
+            #start-screen h2 { font-size: 12px; letter-spacing: 4px; }
+            #scene-title h1 { font-size: 32px; letter-spacing: 4px; }
+            #dialogue-text { font-size: 17px; line-height: 1.6; }
+            #speaker-name { font-size: 11px; letter-spacing: 3px; }
+            .nav-btn { padding: 8px 16px; font-size: 10px; letter-spacing: 2px; }
+            #portrait-layer { height: 200px; bottom: 180px; }
+            .portrait-container { width: 120px; height: 180px; }
+            #audio-controls { top: 10px; right: 10px; gap: 6px; }
+            .audio-btn { padding: 6px 10px; font-size: 8px; }
+            #volume-slider { width: 60px; }
+            #chapter-header h2 { font-size: 11px; letter-spacing: 5px; }
+            #chapter-header h1 { font-size: 20px; }
+        }
+        @media (max-width: 480px) {
+            #portrait-layer { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+        <div class="loading-text">Entering the Domain</div>
+        <div class="loading-bar"><div class="loading-fill" id="loading-fill"></div></div>
+    </div>
+
+    <!-- START SCREEN -->
+    <div id="start-screen" style="display:none;">
+        <h2>A Dark Gothic Fantasy</h2>
+        <h1>Angel's Domain</h1>
+        <div class="authors">by Jimmy Lee & Jeannine</div>
+        <button class="start-btn" onclick="startGame()">Enter the Darkness</button>
+        <div class="continue-note" id="continue-note" style="display:none;">Press Enter to continue your story</div>
+    </div>
+
+    <!-- MENU OVERLAY -->
+    <div id="menu-overlay">
+        <h2>Save Menu</h2>
+        <div id="save-slots"></div>
+        <button class="menu-close" onclick="closeMenu()">Close</button>
+    </div>
+
+    <!-- INSTALL BANNER -->
+    <div id="install-banner">
+        <span class="install-text">Install Angel's Domain on your device</span>
+        <div style="display:flex; gap:10px; align-items:center;">
+            <button class="install-btn" id="install-accept" onclick="installApp()">Install</button>
+            <button class="install-dismiss" onclick="dismissInstall()">&times;</button>
+        </div>
+    </div>
+
+    <div id="stage">
+        <div id="background-layer" class="torch-flicker">
+            <img id="bg-image" src="images/corridor_deep_passage.jpg" alt="" style="opacity:0;">
+        </div>
+        <div id="mist-layer"></div>
+
+        <!-- CHARACTER PORTRAITS -->
+        <div id="portrait-layer">
+            <div class="portrait-container left protagonist" id="portrait-protagonist">
+                <img src="images/seraphina_portrait.svg" alt="Seraphina">
+            </div>
+            <div class="portrait-container right angel" id="portrait-angel">
+                <img src="images/angel_portrait.svg" alt="Angel">
+            </div>
+        </div>
+
+        <!-- AUDIO CONTROLS -->
+        <div id="audio-controls" style="display:none;">
+            <button class="audio-btn" id="ambient-btn" onclick="toggleAmbient()">Ambient: OFF</button>
+            <button class="audio-btn" id="voice-btn" onclick="toggleVoice()">Voice: OFF</button>
+            <input type="range" id="volume-slider" min="0" max="100" value="50" oninput="setVolume(this.value)">
+        </div>
+
+        <div id="chapter-header">
+            <h2 id="chapter-text"></h2>
+            <h1 id="scene-title-text"></h1>
+        </div>
+        <div id="scene-title">
+            <h1 id="title-display"></h1>
+        </div>
+        <div id="dialogue-box">
+            <div id="speaker-name"></div>
+            <div id="dialogue-text"></div>
+        </div>
+        <div id="nav-bar">
+            <button class="nav-btn" id="prev-btn" onclick="prevDialogue()">Previous</button>
+            <div id="progress-bar"><div id="progress-fill"></div></div>
+            <div id="scene-counter"></div>
+            <button class="nav-btn" id="next-btn" onclick="nextDialogue()">Continue</button>
+        </div>
+    </div>
+
+    <script>
+    // ============================================================
+    // ANGEL'S DOMAIN — Visual Novel Engine v2.0
+    // Built for Jimmy Lee & Jeannine
+    // ============================================================
+
+    // ---- INLINE STORY DATA (fallback if scenes.json fails to load) ----
+    const INLINE_STORY_DATA = null; // Will be populated from scenes.json
+
+    let gameData = null;
+    let currentSceneIndex = 0;
+    let currentDialogueIndex = 0;
+    let isTyping = false;
+    let typingTimeout = null;
+
+    // ============================================================
+    // LOADING SYSTEM
+    // ============================================================
+    function loadGameData() {
+        const loadingFill = document.getElementById('loading-fill');
+        loadingFill.style.width = '20%';
+
+        return fetch('scenes.json')
+            .then(r => {
+                if (!r.ok) throw new Error('scenes.json not found');
+                loadingFill.style.width = '60%';
+                return r.json();
+            })
+            .then(data => {
+                loadingFill.style.width = '90%';
+                gameData = data;
+                console.log('Story data loaded from scenes.json:', data.metadata.title);
+            })
+            .catch(err => {
+                console.warn('Could not load scenes.json, using inline data:', err.message);
+                loadingFill.style.width = '60%';
+                // If no inline data, show error
+                if (!INLINE_STORY_DATA) {
+                    document.querySelector('.loading-text').textContent = 'Error: Story data not found';
+                    return;
+                }
+                gameData = INLINE_STORY_DATA;
+            })
+            .then(() => {
+                loadingFill.style.width = '100%';
+                setTimeout(() => {
+                    document.getElementById('loading-screen').classList.add('hidden');
+                    document.getElementById('start-screen').style.display = 'flex';
+                    // Check for saved progress
+                    const saved = localStorage.getItem('angels_domain_autosave');
+                    if (saved) {
+                        document.getElementById('continue-note').style.display = 'block';
+                    }
+                    // Preload first background
+                    if (gameData && gameData.scenes[0]) {
+                        const img = new Image();
+                        img.src = 'images/' + gameData.scenes[0].background;
+                    }
+                }, 500);
+            });
+    }
+
+    // ============================================================
+    // AUDIO ENGINE — Procedural Sound Generation
+    // ============================================================
+    let audioCtx = null;
+    let ambientActive = false;
+    let voiceActive = false;
+    let masterVolume = 0.5;
+    let ambientNodes = {};
+    let currentAmbientType = null;
+
+    function initAudio() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    function createNoiseBuffer() {
+        const bufferSize = audioCtx.sampleRate * 2;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            data[i] = Math.random() * 2 - 1;
+        }
+        return buffer;
+    }
+
+    function playWind() {
+        if (!ambientActive) return;
+        stopAmbient();
+        currentAmbientType = 'wind';
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = createNoiseBuffer();
+        noise.loop = true;
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 200;
+        filter.Q.value = 0.5;
+        const lfo = audioCtx.createOscillator();
+        lfo.type = 'sine';
+        lfo.frequency.value = 0.15;
+        const lfoGain = audioCtx.createGain();
+        lfoGain.gain.value = 100;
+        lfo.connect(lfoGain);
+        lfoGain.connect(filter.frequency);
+        lfo.start();
+        const gain = audioCtx.createGain();
+        gain.gain.value = masterVolume * 0.08;
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+        noise.start();
+        ambientNodes = { noise, filter, lfo, lfoGain, gain };
+    }
+
+    function playFire() {
+        if (!ambientActive) return;
+        stopAmbient();
+        currentAmbientType = 'fire';
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = createNoiseBuffer();
+        noise.loop = true;
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 800;
+        filter.Q.value = 1;
+        const crackleInterval = setInterval(() => {
+            if (!ambientActive || currentAmbientType !== 'fire') {
+                clearInterval(crackleInterval);
+                return;
+            }
+            playCracklePop();
+        }, 200 + Math.random() * 600);
+        const gain = audioCtx.createGain();
+        gain.gain.value = masterVolume * 0.06;
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+        noise.start();
+        ambientNodes = { noise, filter, gain, crackleInterval };
+    }
+
+    function playCracklePop() {
+        if (!audioCtx) return;
+        const pop = audioCtx.createOscillator();
+        pop.type = 'sawtooth';
+        pop.frequency.value = 2000 + Math.random() * 3000;
+        const popFilter = audioCtx.createBiquadFilter();
+        popFilter.type = 'highpass';
+        popFilter.frequency.value = 1500;
+        const popGain = audioCtx.createGain();
+        popGain.gain.setValueAtTime(masterVolume * 0.1, audioCtx.currentTime);
+        popGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+        pop.connect(popFilter);
+        popFilter.connect(popGain);
+        popGain.connect(audioCtx.destination);
+        pop.start();
+        pop.stop(audioCtx.currentTime + 0.05);
+    }
+
+    function playHeartbeat() {
+        if (!audioCtx) return;
+        const beat = audioCtx.createOscillator();
+        beat.type = 'sine';
+        beat.frequency.value = 40;
+        const beatGain = audioCtx.createGain();
+        beatGain.gain.setValueAtTime(masterVolume * 0.3, audioCtx.currentTime);
+        beatGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+        beat.connect(beatGain);
+        beatGain.connect(audioCtx.destination);
+        beat.start();
+        beat.stop(audioCtx.currentTime + 0.15);
+        setTimeout(() => {
+            if (!audioCtx) return;
+            const beat2 = audioCtx.createOscillator();
+            beat2.type = 'sine';
+            beat2.frequency.value = 35;
+            const beat2Gain = audioCtx.createGain();
+            beat2Gain.gain.setValueAtTime(masterVolume * 0.2, audioCtx.currentTime);
+            beat2Gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+            beat2.connect(beat2Gain);
+            beat2Gain.connect(audioCtx.destination);
+            beat2.start();
+            beat2.stop(audioCtx.currentTime + 0.12);
+        }, 200);
+    }
+
+    function playDoorSlam() {
+        if (!audioCtx) return;
+        const creak = audioCtx.createOscillator();
+        creak.type = 'sawtooth';
+        creak.frequency.setValueAtTime(150, audioCtx.currentTime);
+        creak.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.3);
+        const creakFilter = audioCtx.createBiquadFilter();
+        creakFilter.type = 'bandpass';
+        creakFilter.frequency.value = 200;
+        creakFilter.Q.value = 5;
+        const creakGain = audioCtx.createGain();
+        creakGain.gain.setValueAtTime(masterVolume * 0.15, audioCtx.currentTime);
+        creakGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+        creak.connect(creakFilter);
+        creakFilter.connect(creakGain);
+        creakGain.connect(audioCtx.destination);
+        creak.start();
+        creak.stop(audioCtx.currentTime + 0.4);
+        setTimeout(() => {
+            if (!audioCtx) return;
+            const slam = audioCtx.createOscillator();
+            slam.type = 'square';
+            slam.frequency.value = 60;
+            const slamGain = audioCtx.createGain();
+            slamGain.gain.setValueAtTime(masterVolume * 0.4, audioCtx.currentTime);
+            slamGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+            const slamFilter = audioCtx.createBiquadFilter();
+            slamFilter.type = 'lowpass';
+            slamFilter.frequency.value = 200;
+            slam.connect(slamFilter);
+            slamFilter.connect(slamGain);
+            slamGain.connect(audioCtx.destination);
+            slam.start();
+            slam.stop(audioCtx.currentTime + 0.3);
+        }, 350);
+    }
+
+    function playThunder() {
+        if (!audioCtx) return;
+        const thunder = audioCtx.createOscillator();
+        thunder.type = 'sawtooth';
+        thunder.frequency.setValueAtTime(30, audioCtx.currentTime);
+        thunder.frequency.exponentialRampToValueAtTime(15, audioCtx.currentTime + 2);
+        const thunderFilter = audioCtx.createBiquadFilter();
+        thunderFilter.type = 'lowpass';
+        thunderFilter.frequency.value = 100;
+        const thunderGain = audioCtx.createGain();
+        thunderGain.gain.setValueAtTime(masterVolume * 0.3, audioCtx.currentTime);
+        thunderGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.5);
+        thunder.connect(thunderFilter);
+        thunderFilter.connect(thunderGain);
+        thunderGain.connect(audioCtx.destination);
+        thunder.start();
+        thunder.stop(audioCtx.currentTime + 2.5);
+    }
+
+    function playFootsteps() {
+        if (!audioCtx) return;
+        for (let i = 0; i < 4; i++) {
+            setTimeout(() => {
+                if (!audioCtx) return;
+                const step = audioCtx.createOscillator();
+                step.type = 'sine';
+                step.frequency.value = 80 + Math.random() * 40;
+                const stepGain = audioCtx.createGain();
+                stepGain.gain.setValueAtTime(masterVolume * 0.08, audioCtx.currentTime);
+                stepGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+                step.connect(stepGain);
+                stepGain.connect(audioCtx.destination);
+                step.start();
+                step.stop(audioCtx.currentTime + 0.08);
+            }, i * 400);
+        }
+    }
+
+    function playSupernaturalHum() {
+        if (!ambientActive) return;
+        stopAmbient();
+        currentAmbientType = 'hum';
+        const hum = audioCtx.createOscillator();
+        hum.type = 'sine';
+        hum.frequency.value = 55;
+        const hum2 = audioCtx.createOscillator();
+        hum2.type = 'sine';
+        hum2.frequency.value = 57;
+        const gain = audioCtx.createGain();
+        gain.gain.value = masterVolume * 0.05;
+        const lfo = audioCtx.createOscillator();
+        lfo.type = 'sine';
+        lfo.frequency.value = 0.2;
+        const lfoGain = audioCtx.createGain();
+        lfoGain.gain.value = masterVolume * 0.03;
+        lfo.connect(lfoGain);
+        lfoGain.connect(gain.gain);
+        lfo.start();
+        hum.connect(gain);
+        hum2.connect(gain);
+        gain.connect(audioCtx.destination);
+        hum.start();
+        hum2.start();
+        ambientNodes = { hum, hum2, gain, lfo, lfoGain };
+    }
+
+    function stopAmbient() {
+        if (ambientNodes.crackleInterval) clearInterval(ambientNodes.crackleInterval);
+        Object.values(ambientNodes).forEach(node => {
+            try {
+                if (node.stop) node.stop();
+                if (node.disconnect) node.disconnect();
+            } catch(e) {}
+        });
+        ambientNodes = {};
+    }
+
+    function toggleAmbient() {
+        initAudio();
+        ambientActive = !ambientActive;
+        const btn = document.getElementById('ambient-btn');
+        btn.textContent = ambientActive ? 'Ambient: ON' : 'Ambient: OFF';
+        btn.classList.toggle('active', ambientActive);
+        if (ambientActive) {
+            updateAmbientForScene();
+        } else {
+            stopAmbient();
+        }
+    }
+
+    function toggleVoice() {
+        initAudio();
+        voiceActive = !voiceActive;
+        const btn = document.getElementById('voice-btn');
+        btn.textContent = voiceActive ? 'Voice: ON' : 'Voice: OFF';
+        btn.classList.toggle('active', voiceActive);
+    }
+
+    function setVolume(val) {
+        masterVolume = val / 100;
+        if (ambientActive && ambientNodes.gain) {
+            ambientNodes.gain.gain.value = masterVolume * 0.08;
+        }
+    }
+
+    function updateAmbientForScene() {
+        if (!ambientActive || !gameData) return;
+        const scene = gameData.scenes[currentSceneIndex];
+        const ambient = scene.ambient || scene.background || '';
+        if (ambient.includes('fire') || ambient.includes('fireplace')) {
+            playFire();
+        } else if (ambient.includes('supernatural') || ambient.includes('hum')) {
+            playSupernaturalHum();
+        } else {
+            playWind();
+        }
+    }
+
+    // ---- TTS VOICE SYSTEM (Piper neural voices) ----
+    const TTS_SERVER = 'http://localhost:5050';
+    let ttsAvailable = false;
+
+    // Check if Piper server is running
+    fetch(TTS_SERVER + '/health').then(r => r.json()).then(d => {
+        if (d.status === 'ok') { ttsAvailable = true; console.log('Piper TTS ready:', d.voices); }
+    }).catch(() => { console.log('Piper TTS not available, voices disabled'); });
+
+    function speakLine(text, speaker) {
+        if (!voiceActive) return;
+        if (text.includes('[INSERT') || text.includes('[TO BE CONTINUED')) return;
+        if (!ttsAvailable) return;
+
+        // Map speaker to Piper voice
+        let voice = 'female';
+        let speed = 1.0;
+        if (speaker === 'angel') {
+            voice = 'male';
+            speed = 0.85;  // Slower, more deliberate
+        } else if (speaker === 'protagonist') {
+            voice = 'female';
+            speed = 0.95;  // Slightly nervous
+        } else {
+            // Narrator
+            voice = 'female';
+            speed = 0.9;   // Atmospheric
+        }
+
+        // Request TTS from Piper server
+        fetch(TTS_SERVER + '/tts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: text, voice: voice, speed: speed })
+        })
+        .then(response => response.arrayBuffer())
+        .then(buffer => {
+            // Play the WAV audio
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            audioCtx.decodeAudioData(buffer, (decodedBuffer) => {
+                const source = audioCtx.createBufferSource();
+                source.buffer = decodedBuffer;
+                const gainNode = audioCtx.createGain();
+                gainNode.gain.value = masterVolume;
+                source.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                source.start(0);
+                source.onended = () => { audioCtx.close(); };
+            });
+        })
+        .catch(err => console.log('TTS error:', err));
+    }
+
+    // ============================================================
+    // CHARACTER PORTRAITS
+    // ============================================================
+    function showPortrait(speaker) {
+        const angelEl = document.getElementById('portrait-angel');
+        const protagEl = document.getElementById('portrait-protagonist');
+        // Hide both first
+        angelEl.classList.remove('visible');
+        protagEl.classList.remove('visible');
+        // Show the relevant one
+        if (speaker === 'angel') {
+            angelEl.classList.add('visible');
+        } else if (speaker === 'protagonist') {
+            protagEl.classList.add('visible');
+        }
+        // Narrator shows nothing
+    }
+
+    function hideAllPortraits() {
+        document.getElementById('portrait-angel').classList.remove('visible');
+        document.getElementById('portrait-protagonist').classList.remove('visible');
+    }
+
+    // ============================================================
+    // GAME ENGINE
+    // ============================================================
+    function initGame() {
+        createMistParticles();
+        loadGameData().then(() => {
+            loadAutoSave();
+        });
+    }
+
+    function createMistParticles() {
+        const mistLayer = document.getElementById('mist-layer');
+        for (let i = 0; i < 8; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'mist-particle';
+            const size = 100 + Math.random() * 200;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = '-20%';
+            particle.style.top = (20 + Math.random() * 60) + '%';
+            particle.style.animationDelay = (Math.random() * 20) + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            mistLayer.appendChild(particle);
+        }
+    }
+
+    function startGame() {
+        initAudio();
+        document.getElementById('start-screen').classList.add('hidden');
+        document.getElementById('audio-controls').style.display = 'flex';
+        setTimeout(() => {
+            document.getElementById('start-screen').style.display = 'none';
+            showSceneTitle();
+        }, 2000);
+    }
+
+    function showSceneTitle() {
+        if (!gameData) return;
+        const scene = gameData.scenes[currentSceneIndex];
+        const titleDisplay = document.getElementById('title-display');
+        const titleOverlay = document.getElementById('scene-title');
+        titleDisplay.textContent = scene.title;
+        titleOverlay.classList.add('visible');
+        // Show chapter header
+        const chapterHeader = document.getElementById('chapter-header');
+        document.getElementById('chapter-text').textContent = scene.chapter;
+        document.getElementById('scene-title-text').textContent = scene.title;
+        chapterHeader.classList.add('visible');
+        setTimeout(() => {
+            titleOverlay.classList.remove('visible');
+            setTimeout(() => { renderDialogue(); }, 1000);
+        }, 3000);
+    }
+
+    function renderDialogue() {
+        if (!gameData) return;
+        const scene = gameData.scenes[currentSceneIndex];
+        const dialogue = scene.dialogue[currentDialogueIndex];
+        const speakerEl = document.getElementById('speaker-name');
+        const textEl = document.getElementById('dialogue-text');
+
+        // Update chapter header
+        document.getElementById('chapter-text').textContent = scene.chapter;
+        document.getElementById('scene-title-text').textContent = scene.title;
+
+        // Update background
+        const bgImage = document.getElementById('bg-image');
+        const currentSrc = bgImage.src.split('/').pop();
+        if (currentSrc !== scene.background) {
+            bgImage.style.opacity = '0';
+            setTimeout(() => {
+                bgImage.src = 'images/' + scene.background;
+                bgImage.onload = () => {
+                    bgImage.style.opacity = '1';
+                    updateAmbientForScene();
+                };
+            }, 500);
+        } else {
+            updateAmbientForScene();
+        }
+
+        // Update speaker
+        const char = gameData.characters[dialogue.speaker];
+        speakerEl.textContent = char ? char.name : '';
+        speakerEl.className = dialogue.speaker;
+
+        // Show character portrait
+        showPortrait(dialogue.speaker);
+
+        // Render text
+        if (dialogue.effect === 'insert_marker') {
+            textEl.innerHTML = '<div class="insert-marker" onclick="highlightInsert(this)">' + dialogue.text + '<div class="insert-note">' + (dialogue.note || 'Write your scene here') + '</div></div>';
+            isTyping = false;
+            hideAllPortraits();
+        } else {
+            isTyping = true;
+            textEl.classList.add('typing');
+            textEl.textContent = '';
+            typeText(textEl, dialogue.text, 0, dialogue.speaker);
+        }
+
+        // Apply visual effects
+        const bgLayer = document.getElementById('background-layer');
+        bgLayer.className = 'torch-flicker';
+        if (dialogue.effect && dialogue.effect !== 'none' && dialogue.effect !== 'insert_marker') {
+            bgLayer.classList.add(dialogue.effect);
+            if (dialogue.effect === 'slam') playDoorSlam();
+            if (dialogue.effect === 'heartbeat') playHeartbeat();
+            if (dialogue.effect === 'fire_flare') playThunder();
+            setTimeout(() => { bgLayer.classList.remove(dialogue.effect); }, 2000);
+        }
+
+        updateProgress();
+        updateNavButtons();
+        autoSave();
+    }
+
+    function typeText(element, text, index, speaker) {
+        if (index < text.length) {
+            element.textContent += text.charAt(index);
+            const speed = text.charAt(index) === '.' || text.charAt(index) === '!' || text.charAt(index) === '?' ? 300 : 30;
+            typingTimeout = setTimeout(() => typeText(element, text, index + 1, speaker), speed);
+        } else {
+            element.classList.remove('typing');
+            isTyping = false;
+            speakLine(text, speaker);
+        }
+    }
+
+    function highlightInsert(element) {
+        element.style.background = 'linear-gradient(90deg, rgba(139,0,0,0.5), rgba(74,14,78,0.5))';
+        setTimeout(() => { element.style.background = ''; }, 1000);
+    }
+
+    function nextDialogue() {
+        if (!gameData) return;
+        if (isTyping) {
+            clearTimeout(typingTimeout);
+            const scene = gameData.scenes[currentSceneIndex];
+            const dialogue = scene.dialogue[currentDialogueIndex];
+            document.getElementById('dialogue-text').textContent = dialogue.text;
+            document.getElementById('dialogue-text').classList.remove('typing');
+            isTyping = false;
+            speakLine(dialogue.text, dialogue.speaker);
+            return;
+        }
+        const scene = gameData.scenes[currentSceneIndex];
+        if (currentDialogueIndex < scene.dialogue.length - 1) {
+            currentDialogueIndex++;
+            renderDialogue();
+        } else if (currentSceneIndex < gameData.scenes.length - 1) {
+            currentSceneIndex++;
+            currentDialogueIndex = 0;
+            showSceneTitle();
+        }
+    }
+
+    function prevDialogue() {
+        if (!gameData) return;
+        if (isTyping) { clearTimeout(typingTimeout); isTyping = false; }
+        if (currentDialogueIndex > 0) {
+            currentDialogueIndex--;
+            renderDialogue();
+        } else if (currentSceneIndex > 0) {
+            currentSceneIndex--;
+            currentDialogueIndex = gameData.scenes[currentSceneIndex].dialogue.length - 1;
+            renderDialogue();
+        }
+    }
+
+    function updateNavButtons() {
+        if (!gameData) return;
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        prevBtn.disabled = currentSceneIndex === 0 && currentDialogueIndex === 0;
+        const lastScene = currentSceneIndex === gameData.scenes.length - 1;
+        const lastDialogue = currentDialogueIndex === gameData.scenes[currentSceneIndex].dialogue.length - 1;
+        nextBtn.textContent = lastScene && lastDialogue ? 'End' : 'Continue';
+    }
+
+    function updateProgress() {
+        if (!gameData) return;
+        let totalDialogues = 0;
+        let currentTotal = 0;
+        gameData.scenes.forEach((scene, si) => {
+            scene.dialogue.forEach((_, di) => {
+                totalDialogues++;
+                if (si < currentSceneIndex || (si === currentSceneIndex && di <= currentDialogueIndex)) {
+                    currentTotal++;
+                }
+            });
+        });
+        const percent = (currentTotal / totalDialogues) * 100;
+        document.getElementById('progress-fill').style.width = percent + '%';
+        document.getElementById('scene-counter').textContent = (currentSceneIndex + 1) + ' / ' + gameData.scenes.length;
+    }
+
+    // ============================================================
+    // SAVE / LOAD
+    // ============================================================
+    function autoSave() {
+        const saveData = {
+            sceneIndex: currentSceneIndex,
+            dialogueIndex: currentDialogueIndex,
+            timestamp: new Date().toISOString()
+        };
+        localStorage.setItem('angels_domain_autosave', JSON.stringify(saveData));
+    }
+
+    function loadAutoSave() {
+        const saved = localStorage.getItem('angels_domain_autosave');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                currentSceneIndex = data.sceneIndex || 0;
+                currentDialogueIndex = data.dialogueIndex || 0;
+            } catch(e) {}
+        }
+    }
+
+    function openMenu() {
+        const overlay = document.getElementById('menu-overlay');
+        const slotsContainer = document.getElementById('save-slots');
+        slotsContainer.innerHTML = '';
+        const saved = localStorage.getItem('angels_domain_autosave');
+        if (saved) {
+            const data = JSON.parse(saved);
+            const slot = document.createElement('div');
+            slot.className = 'save-slot';
+            slot.innerHTML = '<span class="slot-name">Auto-Save</span><span class="slot-date">' + new Date(data.timestamp).toLocaleString() + '</span>';
+            slot.onclick = () => loadSlot(data);
+            slotsContainer.appendChild(slot);
+        }
+        // Add reset option
+        const resetSlot = document.createElement('div');
+        resetSlot.className = 'save-slot';
+        resetSlot.innerHTML = '<span class="slot-name" style="color:#ff6b6b;">Start Over</span><span class="slot-date">Reset progress</span>';
+        resetSlot.onclick = () => {
+            localStorage.removeItem('angels_domain_autosave');
+            currentSceneIndex = 0;
+            currentDialogueIndex = 0;
+            closeMenu();
+            showSceneTitle();
+        };
+        slotsContainer.appendChild(resetSlot);
+        overlay.classList.add('visible');
+    }
+
+    function closeMenu() { document.getElementById('menu-overlay').classList.remove('visible'); }
+    function loadSlot(data) {
+        currentSceneIndex = data.sceneIndex;
+        currentDialogueIndex = data.dialogueIndex;
+        closeMenu();
+        renderDialogue();
+    }
+
+    // ============================================================
+    // INSTALL / PWA
+    // ============================================================
+    let deferredPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        // Show install banner after a delay
+        setTimeout(() => {
+            const banner = document.getElementById('install-banner');
+            const dismissed = localStorage.getItem('angels_domain_install_dismissed');
+            if (!dismissed) {
+                banner.classList.add('visible');
+            }
+        }, 10000);
+    });
+
+    function installApp() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((result) => {
+                if (result.outcome === 'accepted') {
+                    console.log('App installed');
+                }
+                deferredPrompt = null;
+                document.getElementById('install-banner').classList.remove('visible');
+            });
+        }
+    }
+
+    function dismissInstall() {
+        document.getElementById('install-banner').classList.remove('visible');
+        localStorage.setItem('angels_domain_install_dismissed', 'true');
+    }
+
+    // ============================================================
+    // KEYBOARD + TOUCH
+    // ============================================================
+    document.addEventListener('keydown', (e) => {
+        const startScreen = document.getElementById('start-screen');
+        if (startScreen.style.display !== 'none' && !startScreen.classList.contains('hidden')) {
+            if (e.code === 'Enter' || e.code === 'Space') { startGame(); }
+            return;
+        }
+        if (document.getElementById('menu-overlay').classList.contains('visible')) {
+            if (e.code === 'Escape') closeMenu();
+            return;
+        }
+        switch(e.code) {
+            case 'ArrowRight': case 'Space': case 'Enter': e.preventDefault(); nextDialogue(); break;
+            case 'ArrowLeft': e.preventDefault(); prevDialogue(); break;
+            case 'Escape': openMenu(); break;
+        }
+    });
+
+    document.getElementById('dialogue-box').addEventListener('click', () => {
+        const startScreen = document.getElementById('start-screen');
+        if (startScreen.style.display === 'none' || startScreen.classList.contains('hidden')) {
+            nextDialogue();
+        }
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    document.addEventListener('touchend', (e) => {
+        const diff = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) prevDialogue();
+            else nextDialogue();
+        }
+    }, { passive: true });
+
+    // ============================================================
+    // SERVICE WORKER
+    // ============================================================
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    window.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>

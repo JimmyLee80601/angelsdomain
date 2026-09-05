@@ -1,0 +1,892 @@
+{
+  "metadata": {
+    "title": "Angel's Domain",
+    "subtitle": "A Dark Gothic Fantasy",
+    "authors": "Jimmy Lee & Jeannine",
+    "version": "2.0",
+    "last_edited": "2026-08-10"
+  },
+  "settings": {
+    "theme": "dark_gothic",
+    "font_family": "Cinzel, Georgia, serif",
+    "text_color": "#e8d5c4",
+    "accent_color": "#8b0000",
+    "background_color": "#0a0a0a",
+    "text_shadow": "0 0 10px rgba(139, 0, 0, 0.3)",
+    "image_transition": "fade",
+    "text_speed": "normal",
+    "auto_save": true
+  },
+  "characters": {
+    "angel": {
+      "name": "Angel",
+      "color": "#8b0000",
+      "title": "Lord of the Domain",
+      "portrait": "images/angel_portrait.svg"
+    },
+    "protagonist": {
+      "name": "Seraphina",
+      "color": "#9370db",
+      "title": "The Captive",
+      "portrait": "images/seraphina_portrait.svg"
+    },
+    "narrator": {
+      "name": "",
+      "color": "#e8d5c4",
+      "title": ""
+    }
+  },
+  "scenes": [
+    {
+      "id": "scene_01",
+      "chapter": "Chapter 1: The Corridor",
+      "title": "Awakening",
+      "background": "corridor_deep_passage.jpg",
+      "ambient": "wind",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "I'm walking down a long stone corridor. Why am I wearing a see-through dark purple lingerie? Do I even own anything like this? The stones are cold under my feet and why is it so dark?",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I am compelled to keep moving forward and I don't know why. It is complete darkness ahead of me. This hallway is only led by torches spaced far enough apart to keep it dark but close enough that you see the next one.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "Is this a dream? Why is there no electricity? Why do I feel like I am in some ancient castle?",
+          "effect": "shake"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I remember going to bed in my apartment with modern conveniences. Why would I be thinking this if I'm dreaming?",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I keep moving forward, my heart beating so hard in my chest that I'm afraid it might break my breastbone. My breath is shallow and I see the massive wooden doors just past the next lit torch.",
+          "effect": "heartbeat"
+        }
+      ]
+    },
+    {
+      "id": "scene_02",
+      "chapter": "Chapter 1: The Corridor",
+      "title": "The Doors",
+      "background": "corridor_misty_approach.jpg",
+      "ambient": "wind",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "As I get closer the doors open inward on their own accord. My fear is so strong it is consuming me and, yet, I keep walking, past the doors into an all consuming blackness.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I stop in what feels like a huge open room. The only light coming from behind me in the hallway. Suddenly, the doors slam shut and I am in complete darkness void of any light.",
+          "effect": "slam"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "I don't want to die in a black nothingness. My breathing is getting worse and I might start hyperventilating if I can't get it under control.",
+          "effect": "shake"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I feel a stirring in the air but there is no sound. Suddenly, I am pulled back against a very hard, tall and very strong body.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "You should be scared. You are mine and will never leave my home.",
+          "effect": "reveal"
+        }
+      ]
+    },
+    {
+      "id": "scene_03",
+      "chapter": "Chapter 1: The Corridor",
+      "title": "The Claiming",
+      "background": "corridor_the_doors.jpg",
+      "ambient": "wind",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "A hand goes around my throat pulling my head back but not cutting off my air supply while the other circles my waist firmly holding me in place.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "narrator",
+          "text": "A shiver runs through my body. My nipples are hard and my blood is racing. What the hell is wrong with me?",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "You smell divine.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He purrs in my ear and then I feel sharp fangs pierce my throat. Panic sweeps through me and is immediately washed away with an all consuming ecstasy.",
+          "effect": "bite"
+        },
+        {
+          "speaker": "narrator",
+          "text": "His fangs slide deeper and I feel my blood leaving me, flowing into him. Every drop he takes sends a wave of white-hot pleasure through my body. My legs buckle. He holds me up with one arm like I weigh nothing.",
+          "effect": "bite"
+        },
+        {
+          "speaker": "narrator",
+          "text": "His other hand slides from my waist down to my hip, gripping hard enough to bruise. The torn purple lingerie slips from my shoulder. Cold air hits my bare skin. I should be terrified. I am terrified. But my body is燃烧 with something else entirely.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "Your blood tastes like sin and starlight. You were made for this. Made for me.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He pulls his fangs from my throat and I gasp. The wound doesn't hurt — it burns with a cold fire that spreads through my veins. He turns me to face him. His eyes glow red in the torchlight, my blood on his lips.",
+          "effect": "reveal"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He lowers his mouth to mine. I taste my own blood on his tongue — iron and something sweeter, something ancient. His kiss is brutal and consuming. I moan into his mouth and hate myself for it.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He pushes me back against the cold stone wall. The rough surface bites into my bare shoulders. His body pins me in place — hard muscle against soft curves. I can feel all of him. He is massive and unyielding.",
+          "effect": "heartbeat"
+        },
+        {
+          "speaker": "angel",
+          "text": "Tell me to stop and I will. But we both know you won't.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "I... I hate you.",
+          "effect": "stammer"
+        },
+        {
+          "speaker": "angel",
+          "text": "Liar.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "His hand slides up my thigh, pushing aside the torn fabric. His fingers are ice cold against my burning skin. I gasp and my hips betray me, arching toward his touch. He smiles against my mouth — a predator's smile.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He lifts me. My back scrapes against the stone as he pins me higher, his hands gripping my thighs. My legs wrap around him instinctively. I can feel him through the thin fabric between us — hard and relentless.",
+          "effect": "heartbeat"
+        },
+        {
+          "speaker": "narrator",
+          "text": "The torches flicker. The shadows dance. Somewhere in the darkness, I hear whispers — the Domain watching, tasting my surrender through him. The thought should disgust me. Instead, it pushes me closer to the edge.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He enters me without warning — deep and total. I cry out and the sound echoes through the corridor. He doesn't stop. He sets a rhythm that is ancient and merciless, each thrust pushing me harder against the cold stone.",
+          "effect": "slam"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "Please... I can't... it's too much...",
+          "effect": "shake"
+        },
+        {
+          "speaker": "angel",
+          "text": "You can. You will. You were made for this darkness.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "His words break something in me. The fear and the pleasure fuse into something new — something that has no name. I bite his shoulder to keep from screaming. He laughs, low and dark, and thrusts deeper.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "The climax hits me like a wave of black water. My whole body seizes. I scream into his shoulder and he muffles his own groan against my throat. The corridor spins. The torches blur. The darkness swallows us both.",
+          "effect": "fire_flare"
+        },
+        {
+          "speaker": "narrator",
+          "text": "We stay like that — pressed against the cold stone, breathing hard, tangled together. His arms around me are the only thing keeping me upright. I can feel his heart beating against my chest. If he has one. I'm not sure anymore.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "Now you understand. You belong to the Domain. Body. Blood. Soul.",
+          "effect": "reveal"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He carries me deeper into the darkness. I don't fight him. I can't. My body still trembles with aftershocks and my throat burns where he bit me. The corridor ends at massive doors that open before us like a throat swallowing us whole.",
+          "effect": "none"
+        }
+      ]
+    },
+    {
+      "id": "scene_04",
+      "chapter": "Chapter 2: Angel's Domain",
+      "title": "Revelation",
+      "background": "chamber_firelit.jpg",
+      "ambient": "fire",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "The firelight danced across the room, revealing a chamber of gothic grandeur. Jagged, obsidian-like stone formed the walls, and tapestries depicting grotesque, winged creatures hung in shadowy alcoves.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "angel",
+          "text": "Welcome to my home.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "Where… where am I?",
+          "effect": "shake"
+        },
+        {
+          "speaker": "angel",
+          "text": "You are in my domain. A place where darkness reigns, and desires are laid bare. Tell me, little one, do you fear the dark?",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "Yes.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "Good. Fear is a delicious spice. It sharpens the senses, heightens the pleasure. And I intend to savor every moment.",
+          "effect": "fire_flare"
+        }
+      ]
+    },
+    {
+      "id": "scene_05",
+      "chapter": "Chapter 2: Angel's Domain",
+      "title": "The Mirror",
+      "background": "chamber_firelit.jpg",
+      "ambient": "fire",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "From the shadows, figures began to emerge – creatures with eyes that glowed in the darkness, their forms shifting and indistinct.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "angel",
+          "text": "My guests. They are eager to meet you.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "Angel moved to the bedside, and with a flick of his wrist, a dark, ornate mirror appeared, reflecting Seraphina's image back at her.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "Seraphina... even your name tastes like starlight and sin.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "Look at yourself. You are mine, body and soul. And in my world, there is only pleasure and darkness. And you will learn to crave both.",
+          "effect": "mirror_glow"
+        }
+      ]
+    },
+    {
+      "id": "scene_06",
+      "chapter": "Chapter 2: Angel's Domain",
+      "title": "The Test",
+      "background": "chamber_supernatural.jpg",
+      "ambient": "hum",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "He began to untangle the restraints, his touch sending shivers of anticipation through Seraphina. The creatures in the shadows watched, their eyes gleaming.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "narrator",
+          "text": "My mouth is dry and I want to run as soon as the restraints are off. Will I even get out of the room?",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "Are there others like me? How many women have you stolen and brought here?",
+          "effect": "shake"
+        },
+        {
+          "speaker": "angel",
+          "text": "Do not question me. Do not demean what you are. I brought you here because you are mine. You will always be mine. You were made for me.",
+          "effect": "rage"
+        },
+        {
+          "speaker": "narrator",
+          "text": "The last restraint falls away. I rub my wrists — raw from struggling. The creatures in the shadows lean closer. Their eyes reflect the firelight like dozens of dying stars.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "narrator",
+          "text": "Angel stands over me. His coat falls open. Beneath it, his body is pale and carved from marble — scarred in places, ancient in places. He is beautiful in the way a cathedral is beautiful: vast, cold, and built for worship.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "You wanted to know about the others. There were many. None lasted. None pleased me the way you already have.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He climbs onto the bed. The mattress dips under his weight. His cold hands part my knees. I should run. The door is somewhere behind the creatures. I could try.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "What do you want from me?",
+          "effect": "shake"
+        },
+        {
+          "speaker": "angel",
+          "text": "Everything. Your fear. Your pleasure. Your surrender. I want to hear you scream my name while they watch. I want you to forget you ever lived anywhere but here.",
+          "effect": "rage"
+        },
+        {
+          "speaker": "narrator",
+          "text": "His mouth finds my neck — the same spot where his fangs pierced me. He doesn't bite. He kisses the wound. A apology or a claim. I can't tell the difference anymore.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "His hands explore me like I'm a map of something he's been looking for. Every touch is deliberate. Every caress is a question. And my body answers without my permission — arching, trembling, begging.",
+          "effect": "heartbeat"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He removes what's left of my lingerie. The creatures in the shadows murmur. I cover myself with my hands and he pulls them away, one finger at a time.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "No hiding. Not from them. Not from me. You are mine to display. Mine to use. Mine to worship.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He spreads my legs. The creatures lean forward. I am exposed — completely, shamefully, beautifully exposed. The firelight paints my skin in amber and shadow. I am the painting on the wall. The sacrifice on the altar.",
+          "effect": "fire_flare"
+        },
+        {
+          "speaker": "narrator",
+          "text": "His mouth travels down my body — my throat, my collarbone, my breasts, my stomach. Each kiss is a brand. Each touch leaves a trail of cold fire. I grip the sheets and try to remember how to breathe.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "When his mouth reaches the junction of my thighs, I gasp. His tongue is ice and silk. He parts me with agonizing slowness. The creatures watch. I am being devoured in front of an audience and I have never felt more alive.",
+          "effect": "heartbeat"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "Oh god... oh god... please...",
+          "effect": "stammer"
+        },
+        {
+          "speaker": "angel",
+          "text": "There is no god here. Only me. Only us. Only the dark.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He slides a finger inside me while his tongue works my clit. The sensation is unbearable — too much and not enough. I buck against his mouth and he holds me down with one hand on my hip.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "A second finger. Deeper. He curls them and hits something inside me that makes my vision go white. I scream. The creatures shudder. The fire flares.",
+          "effect": "slam"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He doesn't stop. He pumps his fingers faster while his tongue swirls and flicks. I am climbing something — a wall, a tower, a cliff. The pleasure builds and builds until I can't breathe, can't think, can't do anything but fall.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I come so hard my vision fractures. I hear myself screaming but it sounds like someone else. The pleasure ripples through me in waves that won't stop, each one deeper than the last. The creatures moan with me. The fire roars.",
+          "effect": "fire_flare"
+        },
+        {
+          "speaker": "narrator",
+          "text": "Before the aftershocks fade, he positions himself between my legs. I feel him — huge, cold, inevitable. He pushes inside me in one slow, devastating stroke.",
+          "effect": "heartbeat"
+        },
+        {
+          "speaker": "angel",
+          "text": "Look at me. I want to see your eyes when I take you.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I look up at him. His red eyes burn into mine. His jaw is tight. His breath comes in sharp bursts — the first time I've seen him lose control. He thrusts deeper and I feel him in my stomach.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "The creatures surround the bed now. Their hands reach out and touch me — cold fingers on my arms, my legs, my hair. I should be terrified. Instead, the combined touch sends me higher. I am the center of something dark and sacred.",
+          "effect": "mirror_glow"
+        },
+        {
+          "speaker": "narrator",
+          "text": "Angel's rhythm changes — faster, harder, more desperate. The bed frame groans against the stone wall. The tapestries ripple. The fire dims and flares with each thrust, as if the Domain itself is breathing with us.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "You are mine. Say it. Say you are mine.",
+          "effect": "rage"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "I'm yours... I'm yours... oh god, I'm yours...",
+          "effect": "stammer"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He bites my shoulder as he comes. The pain and pleasure are the same thing. I feel his release deep inside me — cold and hot at once, filling me with something that is more than physical. A binding. A claim. A chain.",
+          "effect": "bite"
+        },
+        {
+          "speaker": "narrator",
+          "text": "We collapse together. His body covers mine — heavy, cold, alive. The creatures retreat into the shadows. The fire settles. The Domain breathes.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I lie there, staring at the obsidian ceiling, feeling his heartbeat slow against my chest. I came here as a captive. I leave this bed as something else. Something new. Something that belongs to the dark.",
+          "effect": "reveal"
+        }
+      ]
+    },
+    {
+      "id": "scene_07",
+      "chapter": "Chapter 2: Angel's Domain",
+      "title": "The Rules",
+      "background": "fireplace_intimate.jpg",
+      "ambient": "fire",
+      "dialogue": [
+        {
+          "speaker": "angel",
+          "text": "The rules are easy enough, your simple mind should understand. You are mine and you will obey all my commands. You will not leave these walls. You will not try to escape.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "I don't know your rules. I don't even know who you are or how I got here.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "When you have earned the privilege of roaming the halls unescorted, you will not go to forbidden areas.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "His eyes are unworldly and the most sexy eyes I've ever seen. I can feel his gaze pulling me in, making me relax, and giving him access to my soul.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "I underst...stand. I don't know your rules. I don't even know who you are or how I got here.",
+          "effect": "stammer"
+        },
+        {
+          "speaker": "angel",
+          "text": "You will learn. In time, you will learn everything about me. And I already know everything about you, Seraphina.",
+          "effect": "reveal"
+        }
+      ]
+    },
+    {
+      "id": "scene_08",
+      "chapter": "Chapter 3: The Domain's Secrets",
+      "title": "Alone",
+      "background": "chamber_firelit.jpg",
+      "ambient": "fire",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "I wake to silence. The fire has burned low, casting long shadows across the stone walls. Angel is gone. The restraints are gone. I am alone in his chamber.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I sit up slowly, my body aching in ways I don't want to examine. The purple lingerie is torn but still covers what matters. Cold air bites at the exposed skin on my shoulders.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "How long was I unconscious? Where did he go? Is this my chance to run?",
+          "effect": "shake"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I swing my legs over the edge of the bed. The stone floor is frigid under my bare feet. I stand, unsteady, and reach for the bedpost to steady myself.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "The chamber is larger than I thought. Tapestries line the walls — dark scenes of battles, of winged creatures, of a tall figure standing over a burning city. One tapestry shows a woman with dark hair, similar to mine, kneeling before him.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "Who were they? How many women has he brought here before me?",
+          "effect": "heartbeat"
+        }
+      ]
+    },
+    {
+      "id": "scene_09",
+      "chapter": "Chapter 3: The Domain's Secrets",
+      "title": "The Library",
+      "background": "corridor_deep_passage.jpg",
+      "ambient": "wind",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "The corridor is different now. The torches burn brighter, as if guiding me somewhere specific. I shouldn't follow. I know I shouldn't follow. But my feet move anyway.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I pass three alcoves. The first holds a suit of armor, black as obsidian, with a helmet shaped like a screaming face. The second holds a stone basin filled with dark liquid that reflects no light. The third holds nothing — just an empty pedestal with scratches in the stone where something was taken.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "The corridor opens into a vast library. Shelves stretch from floor to ceiling, filled with leather-bound books so old their spines are cracked and fading. A single candelabra burns on a reading desk in the center, its flame impossibly steady.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "There must be thousands of books. How old is this place? How old is he?",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I pull a book from the shelf. The pages are vellum, handwritten in an ink that still looks wet. The illustrations show women — always women — arriving at the Domain. Some are drawn with halos of light around them. Others are drawn with chains.",
+          "effect": "reveal"
+        },
+        {
+          "speaker": "narrator",
+          "text": "The last page of every book shows the same figure: a tall man with red eyes, standing alone in a dark hall. The books span centuries. The figure never changes.",
+          "effect": "heartbeat"
+        }
+      ]
+    },
+    {
+      "id": "scene_10",
+      "chapter": "Chapter 3: The Domain's Secrets",
+      "title": "Caught",
+      "background": "chamber_supernatural.jpg",
+      "ambient": "hum",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "I'm so absorbed in the pages that I don't hear him approach. One moment I'm reading. The next, his voice is behind me, low and dangerous.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "You found the library. No one finds the library unless I allow it.",
+          "effect": "reveal"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "I wasn't... I just woke up and you were gone and I didn't know where to—",
+          "effect": "shake"
+        },
+        {
+          "speaker": "angel",
+          "text": "You were reading about the others. The women who came before you.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "How many were there?",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He steps closer. I can feel the cold radiating from him, the weight of centuries pressing against my skin. He takes the book from my hands, gently, almost tenderly.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "Many. None like you. They were drawn here by curiosity, by desire, by dreams. You were chosen. There is a difference.",
+          "effect": "mirror_glow"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "Chosen for what? To be another page in your collection?",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "Chosen to be my consort. My partner. My equal. The Domain has been empty for too long. It needs a queen.",
+          "effect": "rage"
+        }
+      ]
+    },
+    {
+      "id": "scene_11",
+      "chapter": "Chapter 3: The Domain's Secrets",
+      "title": "The Truth Between Worlds",
+      "background": "chamber_supernatural.jpg",
+      "ambient": "hum",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "He leads me back to the chamber. The fire roars back to life as we enter, as if responding to his presence. The creatures in the shadows are gone. We are alone.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "angel",
+          "text": "This Domain exists between worlds. Not heaven. Not hell. Somewhere older. Somewhere that was here before your kind learned to walk upright.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "You're saying this place isn't real. That I'm not real.",
+          "effect": "shake"
+        },
+        {
+          "speaker": "angel",
+          "text": "I'm saying this place is more real than the world you came from. That world is a thin veneer over the truth. Here, the truth is all there is.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He raises his hand and the air in front of us splits open like a wound. Through the rift I see my apartment. My bed, unmade. My phone on the nightstand. A coffee cup on the counter, half full. Everything exactly as I left it.",
+          "effect": "fire_flare"
+        },
+        {
+          "speaker": "angel",
+          "text": "Your world continues without you. But you cannot go back. The blood bond is permanent. You are of the Domain now.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "The rift closes. The fire dims. And I feel something inside me shift — something fundamental, like a lock clicking into place. I am his. The Domain is mine. And there is no going back.",
+          "effect": "heartbeat"
+        }
+      ]
+    },
+    {
+      "id": "scene_12",
+      "chapter": "Chapter 4: The Binding",
+      "title": "The Consort",
+      "background": "fireplace_intimate.jpg",
+      "ambient": "fire",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Days pass. Or what feels like days. Time moves differently here. The fire never goes out. The torches never dim. Angel comes and goes — sometimes staying for hours, sometimes vanishing for what feels like weeks.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "narrator",
+          "text": "He brings me clothes — real clothes, not just torn lingerie. Black silks and deep purples, fabrics so soft they feel like smoke against my skin. He brings food I don't need but crave. Wine that tastes like dark berries and old secrets.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "You're changing. Can you feel it? The Domain is reshaping you. Making you what you need to be.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "I feel... stronger. Like I can sense things I couldn't before. The walls. The creatures. You. I can feel you even when you're not in the room.",
+          "effect": "heartbeat"
+        },
+        {
+          "speaker": "angel",
+          "text": "That is the binding. Our blood is mingled now. Wherever I am in the Domain, you feel me. Wherever you are, I feel you. We are tethered.",
+          "effect": "reveal"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "And if I wanted to leave?",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "You would die before you reached the doors. The Domain would reject you. You are part of it now, Seraphina. Part of me.",
+          "effect": "rage"
+        }
+      ]
+    },
+    {
+      "id": "scene_13",
+      "chapter": "Chapter 4: The Binding",
+      "title": "The Awakening",
+      "background": "chamber_supernatural.jpg",
+      "ambient": "hum",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "I wake in the middle of the night — if night exists here — with my hands glowing. A faint purple light pulses from my fingertips, matching the rhythm of my heartbeat.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "What the... what is happening to me?",
+          "effect": "shake"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I sit up and hold my hands in front of my face. The light intensifies when I focus on it, dimming when I look away. I wave my hand and the flames in the fireplace leap higher, then lower, responding to my gesture.",
+          "effect": "fire_flare"
+        },
+        {
+          "speaker": "narrator",
+          "text": "The tapestry on the wall ripples. The dark liquid in the stone basin in the corridor begins to swirl. The Domain is responding to me. To what I'm becoming.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "You found it. The Domain's gift. Every consort awakens eventually. Most take weeks. You took three days.",
+          "effect": "reveal"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "What can I do with this?",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "Anything. The Domain is yours to command. Walls, shadows, the creatures that live here — they will obey you as they obey me. We are sovereign together.",
+          "effect": "mirror_glow"
+        }
+      ]
+    },
+    {
+      "id": "scene_14",
+      "chapter": "Chapter 4: The Binding",
+      "title": "The Confrontation",
+      "background": "chamber_firelit.jpg",
+      "ambient": "fire",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "I stand before the ornate mirror again. But this time, my reflection is different. My eyes have a faint violet glow. My skin seems to shimmer in the firelight. I look like something out of one of those tapestries — not human, but not quite what Angel is either.",
+          "effect": "fade_in"
+        },
+        {
+          "speaker": "angel",
+          "text": "Beautiful. You are becoming what you were always meant to be.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "I didn't ask for this. You took me from my life. You bit me. You bound me to this place without my consent.",
+          "effect": "rage"
+        },
+        {
+          "speaker": "angel",
+          "text": "No. I saved you from a life that was slowly crushing your soul. You were dying in that apartment, Seraphina. Not physically. Something deeper. I heard your soul screaming across the veil between worlds.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "That's what you tell yourself? That you're a savior?",
+          "effect": "shake"
+        },
+        {
+          "speaker": "angel",
+          "text": "I tell myself the truth. You were meant for something greater than fluorescent lights and instant coffee. You were meant for darkness and fire and power. And now you have it.",
+          "effect": "fire_flare"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I want to hate him. I want to rage against the cage he's built around me. But the power humming through my veins makes it hard to remember what I'm angry about. The Domain pulses around me like a living thing, and it loves me.",
+          "effect": "heartbeat"
+        }
+      ]
+    },
+    {
+      "id": "scene_15",
+      "chapter": "Chapter 4: The Binding",
+      "title": "The Threat",
+      "background": "chamber_supernatural.jpg",
+      "ambient": "hum",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "The attack comes without warning. A sound like glass shattering echoes through the Domain. The walls crack. The fire gutters and dies. The creatures in the shadows shriek.",
+          "effect": "slam"
+        },
+        {
+          "speaker": "angel",
+          "text": "Stay behind me. Do not move. Do not speak.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "Through the cracks in the walls, a white light pours in — harsh, sterile, nothing like the warm glow of the Domain. It burns where it touches the stone. The creatures recoil.",
+          "effect": "fire_flare"
+        },
+        {
+          "speaker": "angel",
+          "text": "Hunters. They found the breach. They've been looking for a way in for centuries.",
+          "effect": "none"
+        },
+        {
+          "speaker": "protagonist",
+          "text": "What do they want?",
+          "effect": "shake"
+        },
+        {
+          "speaker": "angel",
+          "text": "To destroy this place. To destroy me. To destroy everything that doesn't fit their version of reality.",
+          "effect": "none"
+        },
+        {
+          "speaker": "narrator",
+          "text": "The cracks widen. Figures begin to push through — men and women in dark tactical gear, carrying weapons I don't recognize. They move with military precision. They've done this before.",
+          "effect": "none"
+        },
+        {
+          "speaker": "angel",
+          "text": "Seraphina. The Domain is yours to protect now. Show me what you've become.",
+          "effect": "reveal"
+        },
+        {
+          "speaker": "narrator",
+          "text": "I raise my hands. The purple light explodes from my fingertips. The walls seal. The fire roars back to life. And the hunters scream as the Domain fights back — through me.",
+          "effect": "fire_flare"
+        },
+        {
+          "speaker": "narrator",
+          "text": "[TO BE CONTINUED — Write Chapter 5 here]",
+          "effect": "insert_marker",
+          "note": "Next chapter: The battle for the Domain. Seraphina discovers the full extent of her power. Jimmy & Jeannine."
+        }
+      ]
+    }
+  ]
+}
